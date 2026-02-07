@@ -4,8 +4,7 @@ import os
 import datetime
 from werkzeug.utils import secure_filename
 
-from config import DevelopmentConfig
-
+from config import DevelopmentConfig, ProductionConfig
 
 # ------------------------------------------------------------------
 # App setup
@@ -18,6 +17,7 @@ env = os.environ.get("FLASK_ENV", "development")
 
 if env == "production":
     app.config.from_object(ProductionConfig)
+    ProductionConfig.validate()
 else:
     app.config.from_object(DevelopmentConfig)
     
